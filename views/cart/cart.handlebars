@@ -1,0 +1,38 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th width="50%">Item</th>
+      <th width="50%">Price</th>
+      <th width="50%">Quantity</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="cart">
+    {{#each cart}}
+      <tr>
+          <td width="50%">{{this.cart_name}}</td>
+          <td width="50%">{{this.cart_price}}</td>
+          <td width="50%">{{this.cart_item_quantity}}</td>
+          {{!-- <td width="50%">
+            <button id="minus">-</button>{{this.cart_item_quantity}}<button id="plus">+</button>
+          </td>            --}}
+          <td><a href="/cart/delete/{{this.cart_name}}" class="btn btn-danger">Delete</a></td> 
+      </tr>
+    {{/each}}
+  </tbody>
+</table>    
+
+{{#if cart}}
+  <div style="float: right;">
+    <pre><p>Subtotal            S$ {{subtotal}}</p></pre>
+    <pre><P><b>Total               S$ {{total}}</b></P></pre>
+    <a href="/payment/create_payment" class="btn btn-primary" style="float: right;">Checkout</a>
+  </div>
+{{else}}
+<div style="text-align: center;">
+  <h2>You have no items in your cart.</h2>
+  <a href="/product/showProduct" class="btn btn-success">Add Item</a>
+  <a href="/payment/create_payment" class="btn btn-primary" style="float: right;">Checkout</a>
+</div>
+
+{{/if}}

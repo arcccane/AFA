@@ -1,0 +1,101 @@
+<style>
+	.title {
+		text-align: center;
+		-webkit-background-clip: text;
+		background-clip: text;
+		background-image: url('/img/5804152.png');
+		color: transparent;
+	}
+
+	.title h3 {
+		font-size: 4.5vw;
+		font-weight: 700;
+	}
+
+	html,
+	body {
+		width: auto;
+		height: auto;
+	}
+
+	body {
+		background-image: url("/img/41f009f68d063746414a9c27f5ab2669.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		animation: gradient 45s ease infinite;
+	}
+
+	.card {
+		background-color: whitesmoke;
+	}
+</style>
+
+<body>
+	<div class="title">
+		<h3 class="text">UPDATE SUBMISSION</h3>
+	</div>
+	<hr style="border:3px solid lightgrey;width:65%;">
+	<div class="row">
+		<div class="col-md-8 mx-auto">
+			<div class="card card-body">
+				<form action="/content/saveUpdatedContent/{{content.id}}?_method=PUT" method="post">
+					<input type="hidden" name="_method" value="PUT">
+					<div class="form-group">
+						<label class="font-italic" for="fname">First Name</label>
+						<input id="fname" type="text" class="form-control" name="fname" value="{{content.fname}}"
+							required>
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="lname">Last Name</label>
+						<input id="lname" type="text" class="form-control" name="lname" value="{{content.lname}}"
+							required>
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="phone">Phone Number</label>
+						<input id="phone" type="tel" name="phone" class="form-control" value="{{content.phone}}"
+							required>
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="age">Age</label>
+						<input id="age" type="text" name="age" class="form-control" value="{{content.age}}" required>
+					</div>
+					<div class="form-group">
+						<label class="font-italic">Gender</label><br>
+						<input type="radio" id="Male" name="gender" value="Male" {{radioCheck content.gender 'Male' }}
+							required>
+						<label class="font-italic" for="Male">Male</label><br>
+						<input type="radio" id="Female" name="gender" value="Female" {{radioCheck
+							content.gender 'Female' }} required>
+						<label class="font-italic" for="Female">Female</label><br>
+					</div>
+					<div class="form-group">
+						<label class="font-italic">Upload Submission</label>
+						<br>
+						<input type="file" id="sub" name="sub" accept="image/png,image/jpeg,image/jpg,image/gif"
+							required>
+						<br>
+						<br>
+						<img id="subpic" {{#if content.subURL}} src="{{content.subURL}}" {{else}} src="/img/tint1.jpg"
+							{{/if}} alt="" class="border img-thumbnail img-fluid" style="height:20%;width:20%">
+						<input id="subURL" type="hidden" name="subURL">
+						<div class="font-weight-bold text-danger small" id="subErr" style="display:none"></div>
+					</div>
+					<div class="form-group">
+						<label class="font-italic">Date of Submission</label>
+						<input id="datepicker" width="200" name="dateOfSub"
+							value="{{formatDate content.dateOfSub 'DD MMM YYYY'}}" readonly />
+					</div>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$('#datepicker').datepicker({
+		uiLibrary: 'bootstrap4'
+	});
+</script>

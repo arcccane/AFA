@@ -1,0 +1,11 @@
+<div class="form-sm">
+<h1 class="display-4">Confirm Delete</h1>
+<p>Delete all of {{cart_name}} item(s) from cart?</p>
+<form method="POST" action="">
+    <input type="hidden" id="cart_name" name="cart_name" value="{{cart_name}}">
+    <input type="hidden" id="id" name="uuid" value="{{id}}">
+
+    <a href="/cart/cart" class="btn btn-secondary">Back</a>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+</div> 

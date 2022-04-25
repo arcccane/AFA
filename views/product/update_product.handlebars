@@ -1,0 +1,74 @@
+<div class="container">
+	<div class="card card-body">
+		<h3>Update Products</h3>
+		<form action="/product/update_product/{{product.id}}" method="post" id="updateProduct">
+			<div class="form-group">
+				<div class="row mb-2">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-9 mb-4">
+						<div class="form-group">
+							<label class="font-italic">Product Name</label>
+	
+							<input id="name" class="form-control" type="text" value="{{product.name}}" name="name" onblur="capaitaliseTitle()">
+							{{!-- <a href="#" onclick="getOMdbMovie()" tabindex="-1" class="card-link">
+							<i class="fas fa-film"></i>
+							Get Open Movie DB Data
+							</a> --}}
+							{{!-- <span class="font-weight-bold text-info" id="OMdbErr" style="display:none">Unavailable</span> --}}
+						</div>
+						<div class="form-group">
+							<label class="font-italic">Product ID</label>
+							<input id="productid" class="form-control" type="text" value="{{product.productid}}" name="productid">
+						</div>
+						<label class="font-italic">Product Category</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="New Arrival" value="New Arrival" name="category" {{radioCheck product.category 'New Arrival'}}>
+							<label class="form-check-label" for="New Arrival">New Arrival</label>
+						</div>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="Pre-Order" value="Pre-Order" name="category" {{radioCheck product.category 'Pre-Order'}}>
+							<label class="form-check-label" for="pre">Pre-Order</label>
+						</div>
+						<br>
+						<br>
+						<div class="form-group">
+							<label class="font-italic">Product Price</label>
+							<input id="price" class="form-control" type="text" value="{{product.price}}" name="price">
+						</div>
+						<div class="form-group">
+							<label class="font-italic">Product Manufacturer</label>
+							<input id="manufacturer" class="form-control" type="text" value="{{product.manufacturer}}" name="manufacturer">
+						</div>
+						<div class="form-group">
+						<label class="font-italic" for="description">Description</label>
+						<textarea class="form-control" id="description" name="description" rows="6">{{product.description}}</textarea>
+					</div>
+					</div>
+					<div class="col-lg-3 mb-4">
+					<input type="file" id="imageUpload" name="imageUpload" accept="image/png,
+															image/jpeg,image/jpg,image/gif">
+					<a href="{{product.imageURL}}" data-title="{{product.name}}" data-toggle="lightbox">
+						<img id="image" {{#if product.imageURL}} src="{{product.imageURL}}" {{else}} src="/img/no-image.jpg"  {{/if}} alt=""
+							 name="imageURL" class="border img-thumbnail img-fluid" style="height:95%;width:100%">
+					</a>
+					<input id="imageURL" type="hidden" name="imageURL" value="{{product.imageURL}}">
+					<div class="font-weight-bold text-danger small" id="imageErr" style="display:none"></div>
+				</div>
+				</div>
+			</div>
+			<br>
+			<button id="butAddproduct" type="submit" class="btn btn-primary">Save
+			</button>
+		</form>
+	</div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />

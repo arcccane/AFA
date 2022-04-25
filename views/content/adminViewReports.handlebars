@@ -1,0 +1,58 @@
+<style>
+  h2{
+    text-align: center;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: lightblue;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: center;
+  }
+
+  th {
+    background-color: cornflowerblue;
+  }
+</style>
+<body>
+    <h2><b>Reports Table</b> (Admins)</h2>
+    <hr style="border:1px solid black;">
+    <br>
+    <table class="table table-striped" id="myTable">
+      <thead>
+        <tr>
+            <th>No</th>
+          <th>Content ID</th>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Reason</th>
+          <th style="background-color: tomato ;">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if reports}}
+        {{#each reports}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{Reported_Id}}</td>
+          <td>{{Reported_UserId}}</td>
+          <td>{{Reported_Name}}</td>
+          <td>{{reason}}</td>
+          <td><a href="/content/adminDeleteReport/{{id}}" data-toggle="confirmation" data-title="Confirm delete?">
+              <button class="btn btn-danger">Delete</button>
+            </a></td>
+          {{/each}}
+          {{else}}
+          <h3>No reports.</h3>
+          {{/if}}
+        </tr>
+      </tbody>
+    </table>
+</body>

@@ -1,0 +1,128 @@
+{{!-- <!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+
+<div class="container">
+	<div class="card card-body">
+		<h3>Add Event</h3>
+		<form method="post" action="/event/addEvent"> 
+			<div class="form-group">
+				<label class="font-italic" for="event">Event</label>
+						<input id="event" type="text" class="form-control" name="event" required>
+				
+			</div>
+			<div class="form-group mb-4">
+				<label class="font-italic" for="des">Description</label>
+				<textarea class="form-control" id="des" name="des" rows="7"></textarea>
+			</div>
+
+
+
+			<div class="form-group">
+				<div class="row mb-2">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+						<label class="font-italic">Date</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly/>
+					</div>
+					<div class="form-group">
+								<label for="starttime">Start</label>
+								<input type="text" name="starttime" class="form-control" id="starttime">
+				
+							<label for="endtime">End</label>
+							<input type="text" name="endtime" class="form-control" id="endtime">
+					</div>
+				</div>
+			</div>
+
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
+
+<script>
+		$('#datepicker').datepicker({
+			format: 'dd/mm/yyyy', 
+			uiLibrary: 'bootstrap4',
+		});
+		$(function () {
+             $('#starttime').timepicker({
+                 format: 'HH:MM'
+             });
+			 $('#endtime').timepicker({
+				format: 'HH:MM'
+			});
+		});
+		
+		
+</script> --}}
+
+
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+<div class="container">
+	<div class="card card-body mx-auto">
+		<h3>Add Event</h3>
+		<form action="/event/addEvent" method="post" id="addEvent">
+			<div class="row mb-2">
+				<div class="col-lg-9">
+					<div class="form-group">
+						<label class="font-italic" for="event">Title</label>
+						<input id="event" type="text" class="form-control" onblur="initialiseTitle()" name="event" required>
+					</div>
+
+					<div class="form-group">
+						<label class="font-italic" for="des">Description</label>
+						<textarea class="form-control" id="des" name="des" rows="6"></textarea>
+					</div>
+				</div>
+
+				<div class="col-lg-3 mb-4">
+					<input type="file" id="posterUpload" name="posterUpload" accept="image/png,
+															image/jpeg,image/jpg,image/gif">
+					<img id="poster" src="/img/no-image.jpg" alt="" class="border img-thumbnail img-fluid"
+						 style="height:95%;width:100%">
+					<input id="posterURL" type="hidden" name="posterURL">
+					<div class="font-weight-bold text-danger small" id="posterErr" style="display:none"></div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row mb-2 mt-4">
+					<div class="col-12 col-sm-5 col-md-5 col-lg-6 mb-4">
+						<label class="font-italic">Date release</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly />
+					</div>	
+					<div class="form-group">
+								<label for="starttime">Start</label>
+								<input type="text" name="starttime" class="form-control" id="starttime">
+				
+							<label for="endtime">End</label>
+							<input type="text" name="endtime" class="form-control" id="endtime">
+					</div>			
+				</div>
+			</div>
+
+			
+
+			<br>
+			<button type="submit" disabled style="display: none" aria-hidden="true"></button>
+			<input class="btn btn-outline-primary" type="submit" value="Save">
+		</form>
+	</div>
+</div>
+
+<script>
+		$('#datepicker').datepicker({
+			format: 'dd/mm/yyyy', 
+			uiLibrary: 'bootstrap4',
+		});
+		$(function () {
+             $('#starttime').timepicker({
+                 format: 'HH:MM'
+             });
+			 $('#endtime').timepicker({
+				format: 'HH:MM'
+			});
+		});
+		
+		
+</script>

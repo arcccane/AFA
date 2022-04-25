@@ -1,0 +1,221 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+<style>
+
+  h3{
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  font-size: 60px;
+  }
+
+td{
+  background-color: rgba(240, 248, 255, 0.619);
+
+}
+
+
+
+  
+
+
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  background: #a9c1e274;
+  display: inline-block;
+  border: 1px solid rgb(7, 6, 6);
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  color: rgb(40, 87, 198);
+  border: none;
+  cursor: pointer;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  margin: auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.btn {
+  color: #3685f4;
+}
+
+/* Center the image and position the close button */
+
+
+.containers {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+.image{
+  width: 200px;
+}
+
+
+</style>
+
+
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+
+	{{#if events}}
+  <div class="container">
+
+		<h3>Upcoming Events</h3>
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+		
+		</div>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Poster</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th></th>
+      </tr>
+    </thead>
+  
+		{{#each events}}
+
+    <tbody id="myTable">
+      <tr>
+        <td>
+          <div class="image">
+						<a href="{{posterURL}}" data-title="{{title}}" data-toggle="lightbox"></a>
+							<img src="{{posterURL}}" alt="Poster unavailable" class="img-thumbnail">
+						</a></div>
+        </td>
+        <td>{{event}}</td>
+        <td>{{formatDate dateRelease 'DD MMM YYYY'}}</td>
+        <td>{{startTime}} - {{endTime}}</td>
+        <td>
+						<p class="font-italic"></p>
+
+						<button class="btn" onclick="document.getElementById('id01').style.display='block'" style="width:auto">
+							<i class="far fa-envelope"></i>
+							Send Reminder to Email</button>
+
+						<div id="id01" class="modal">
+						
+						<form class="modal-content animate" method="POST" action="/sendemail">
+
+							<div class="containers">
+							<input type="text" placeholder="Enter Email" name="email" required>
+								
+							<button type="submit">submit</button>
+							
+							</div>
+            </form>
+
+
+              
+          </td>
+      
+      <th style="background: rgba(240, 248, 255, 0.741);" colspan="5">
+        <div class="accordion" id="desAccordion{{id}}">
+				<div class="card-header" id="headingOne{{id}}">
+					<button class="btn btn-link" style="color: rgb(102, 86, 223);"type="button" data-toggle="collapse" data-target="#collapseOne{{id}}"
+						aria-expanded="false" aria-controls="collapseOne{{id}}">
+						Description<i class="fas fa-chevron-down"></i>
+					</button>
+
+				</div>
+
+				<div id="collapseOne{{id}}" class="collapse" aria-labelledby="headingOne{{id}}"
+					data-parent="#desAccordion{{id}}">
+					<div class="card-body">
+						{{des}}
+					</div>
+				</div>
+			</div>
+          </th>
+          </tr>
+    </tbody>
+ 
+   
+		{{/each}}  
+    </table>
+
+
+
+</div>
+{{else}}
+<h3>No event created</h3>
+{{/if}}
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+

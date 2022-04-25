@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="card card-body">
+		<h3>Payment Information</h3>
+		<form action="/payment/create_payment" method="post" id="createPayment">
+			<div class="form-group">
+				<div class="row mb-2">
+					<div class="col-12 col-sm-12 col-md-4 col-lg-8">
+						<div class="form-group">
+							<label class="font-italic">Card Name</label>
+							<input id="cardname" class="form-control" type="text" name="cardname" onblur="capaitaliseTitle()">
+						</div>
+						<div class="form-group">
+							<label class="font-italic">Card Number</label>
+							<input id="number" class="form-control" type="text" name="number">
+						</div>
+						<div class="form-group">
+							<label class="font-italic">Expiry Date</label>
+							<input id="expiry" class="form-control" type="text" name="expiry">
+						</div>
+						<div class="form-group">
+							<label class="font-italic">CVC</label>
+							<input id="cvc" class="form-control" type="text" name="cvc">
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			{{!-- <button id="butAddpayment" type="submit" class="btn btn-primary">Save</button> --}}
+			<a href="/retrieve_payment" class="btn btn-primary" style="float: right;">Confirm Payment</a>
+		</form>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />

@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+	<div class="container">
+		<a class="navbar-brand" href="/"> <img class="logo" src="/img/logo.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+
+			<ul class="navbar-nav">
+
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						id="navbarDropdownMenuLink">Content</a>
+					<div class="dropdown-menu">
+						<a href="/content/viewAllContent" class="dropdown-item">Gallery</a>
+						{{#if user}}
+						<a href="/content/viewOwnContent" class="dropdown-item">Your Gallery</a>
+						<a href="/content/showAddContent" class="dropdown-item">Add Content</a>
+						{{/if}}
+						{{#if admin}}
+						<a href="/content/adminViewContent" class="dropdown-item">Manage Content</a>
+						<a href="/content/adminViewReports" class="dropdown-item">Manage Reports</a>
+						{{/if}}
+					</div>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						id="navbarDropdownMenuLink">E-Store</a>
+					<div class="dropdown-menu">
+						<a href="/product/showProduct" class="dropdown-item">Product Listings</a>
+						{{#if admin}}
+						<a href="/product/create_product" class="dropdown-item">Create Product</a>
+						<a href="/product/retrieve_product" class="dropdown-item">Retrieve Product</a>
+						{{/if}}
+					</div>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						id="navbarDropdownMenuLink">Event</a>
+					<div class="dropdown-menu">
+						<a href="/event/customerEvent" class="dropdown-item">Upcoming Event</a>
+						
+						<a href="/showAddEvent" class="dropdown-item">Add Event</a>
+						<a href="/event/listEvent" class="dropdown-item">Retrieve Events</a>	
+					
+					</div>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						id="navbarDropdownMenuLink">Feedback</a>
+					<div class="dropdown-menu">
+						<a href="/showFeedback" class="dropdown-item">Provide Feedback</a>
+						
+						{{#if admin}}
+						<a href="/form/retrievefeedback" class="dropdown-item">Retrieve Feedback</a>
+						{{/if}}
+						
+						
+
+					</div>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						id="navbarDropdownMenuLink">Enquiry</a>
+					<div class="dropdown-menu">
+						<a href="/enquiry/create_enquiry" class="dropdown-item">Create Enquiry</a>
+						{{#if user}}
+						<a href="/enquiry/retrieve_enquiry" class="dropdown-item">Retrieve/Update Enquries</a>
+						{{/if}}
+						
+						{{#if admin}}
+						<a href="/enquiry/admin_enquiry" class="dropdown-item">Retrieve Enquries</a>
+						{{/if}}
+					</div>
+				</li>
+				{{#if admin}}
+				<li class="nav-item dropdown">
+					<a href="/" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">User
+						Management
+					</a>
+					<div class="dropdown-menu">
+						<a href="/admins/retrieveuser" class="dropdown-item">Retrieve Users</a>
+					</div>
+
+				</li>
+				{{/if}}
+
+			</ul>
+			
+			<ul class="navbar-nav ml-auto">
+				{{#if user}}
+				<li class="nav-item">
+					<a class="nav-link" href="/cart/cart">Cart</a>
+				</li>
+				{{/if}}
+				{{#if admin}}
+				<li class="nav-item">
+					<a class="nav-link" href="/payment/update_payment">Payment</a>
+				</li>
+				{{/if}}
+				{{#if admin}}
+				<li class="nav-item">
+					<a href="/admins/adminprofile" class="nav-link">Admin Profile</a>
+				</li>
+				<li class="nav-item">
+					<a href="/showadminregister" class="nav-link">Register</a>
+				</li>
+				{{/if}}
+				{{#if user}}
+				<li class="nav-item">
+					<a href="/user/profile" class="nav-link">Profile</a>
+				</li>
+				<li class="nav-item">
+					<a href="/logout" class="nav-link">Logout</a>
+				</li>
+				{{else}}
+				<li class="nav-item">
+					<a href="/showLogin" class="nav-link">Login</a>
+				</li>
+				<li class="nav-item">
+					<a href="/showRegister" class="nav-link">Register</a>
+				</li>
+				<li class="nav-item">
+					<a href="/logins/logoutpage" class="nav-link">Logout</a>
+				</li>
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+</nav>

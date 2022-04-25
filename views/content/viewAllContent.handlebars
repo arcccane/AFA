@@ -1,0 +1,397 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+<style>
+  .title {
+    text-align: center;
+    font-family: "Audiowide", sans-serif;
+    font-size: 60px;
+  }
+
+  .title h2 {
+    font-size: 40px;
+    font-weight: 700;
+  }
+
+  .gallery {
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    margin: 10px;
+    position: relative;
+    text-align: center;
+  }
+
+  .gallery:hover {
+    border: 1px solid #777;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: auto;
+  }
+
+  .buttons {
+    text-align: center;
+  }
+
+  .collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .active,
+  .collapsible:hover {
+    background-color: #ccc;
+  }
+
+  .content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
+
+  .collapsible:after {
+    content: '\02795';
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .active:after {
+    content: "\2796";
+  }
+
+  .desc {
+    text-align: center;
+    display: inline-block;
+    padding: 12px;
+  }
+
+  .desc span {
+    color: #9d9da4;
+    font-family: monospace;
+  }
+
+  .desc .btn-secondary {
+    display: block;
+    margin: 40px auto 0px;
+    text-align: center;
+    background: #ed2553;
+    border-radius: 3px;
+    box-shadow: 0 10px 20px -8px rgb(240, 75, 113);
+    padding: 10px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    text-decoration: none;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+
+  .desc .btn-secondary:hover {
+    transform: translateY(-3px);
+  }
+
+  .desc .btn-secondary .fa {
+    margin-right: 5px;
+    margin-top: 3px;
+  }
+
+  #myInput {
+    background-image: url("black-search-icon-png-8.jpg");
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+
+  input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-clip: content-box;
+    padding: 3px;
+    margin-top: -1px;
+    vertical-align: middle;
+    margin: 5px;
+  }
+
+  input[type="radio"]:checked {
+    background-color: firebrick
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 14px;
+    left: 8px;
+    width: 18px;
+  }
+
+  .clear-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 25px;
+    cursor: pointer;
+    < !-- visibility: hidden;
+    -->
+  }
+
+  #myInput {
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 45px;
+    width: 100%;
+    padding: 2px 23px 2px 36px;
+    outline: 0;
+    background-color: #f5f5f5;
+  }
+
+  #myInput:hover,
+  #myInput:focus {
+    border: 1.5px solid #009688;
+    background-color: white;
+  }
+
+  #top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+</style>
+
+<body>
+  <button onclick="topFunction()" id="top" title="Go to top"><i class="arrow up"></i></button>
+
+  <div class="title">
+    <h2>Submission Gallery</h2>
+  </div>
+
+  <hr style="border:1px solid grey;">
+
+  <div class="wrapper">
+    <img class="search-icon"
+      src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+    <input type="text" id="myInput" onkeyup="Filter()" placeholder="Search by ...">
+    <img class="clear-icon"
+      src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxLjk3NiA1MS45NzYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxLjk3NiA1MS45NzY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cGF0aCBkPSJNNDQuMzczLDcuNjAzYy0xMC4xMzctMTAuMTM3LTI2LjYzMi0xMC4xMzgtMzYuNzcsMGMtMTAuMTM4LDEwLjEzOC0xMC4xMzcsMjYuNjMyLDAsMzYuNzdzMjYuNjMyLDEwLjEzOCwzNi43NywwICAgQzU0LjUxLDM0LjIzNSw1NC41MSwxNy43NCw0NC4zNzMsNy42MDN6IE0zNi4yNDEsMzYuMjQxYy0wLjc4MSwwLjc4MS0yLjA0NywwLjc4MS0yLjgyOCwwbC03LjQyNS03LjQyNWwtNy43NzgsNy43NzggICBjLTAuNzgxLDAuNzgxLTIuMDQ3LDAuNzgxLTIuODI4LDBjLTAuNzgxLTAuNzgxLTAuNzgxLTIuMDQ3LDAtMi44MjhsNy43NzgtNy43NzhsLTcuNDI1LTcuNDI1Yy0wLjc4MS0wLjc4MS0wLjc4MS0yLjA0OCwwLTIuODI4ICAgYzAuNzgxLTAuNzgxLDIuMDQ3LTAuNzgxLDIuODI4LDBsNy40MjUsNy40MjVsNy4wNzEtNy4wNzFjMC43ODEtMC43ODEsMi4wNDctMC43ODEsMi44MjgsMGMwLjc4MSwwLjc4MSwwLjc4MSwyLjA0NywwLDIuODI4ICAgbC03LjA3MSw3LjA3MWw3LjQyNSw3LjQyNUMzNy4wMjIsMzQuMTk0LDM3LjAyMiwzNS40NiwzNi4yNDEsMzYuMjQxeiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+  </div>
+
+  <label>
+    <input type="radio" name="filter" id="filterSname" value="SName" checked /><b>Submission Name</b>
+  </label>
+
+  <label>
+    <input type="radio" name="filter" id="filterName" value="Name" /><b>Name</b>
+  </label>
+  <br>
+
+  {{#unless user}}
+  <h4 style="font-style: italic;">Login to post your own content!</h4>
+  {{/unless}}
+
+  {{#if contents}}
+  {{#each contents}}
+
+  <div class="gallery">
+    <div class="img">
+      <a target="_blank" href="{{subURL}}">
+        <img src="{{subURL}}" alt="Content Unavailable" class="img-thumbnail img-fluid" width="600" height="400"
+          title="{{sname}}, {{likes}} likes">
+      </a>
+    </div>
+
+    <button type="button" class="collapsible">Expand</button>
+    <div class="content">
+      <div class="desc">
+        <h5 class="sname"><b>{{sname}}</b></h5>
+        <p class="name">By:<br> <b>{{fname}} {{lname}}</b></p>
+        <p>Age: {{age}}</p>
+        <p>Gender: {{gender}}</p>
+        <p>Uploaded on <br> {{formatDate dateOfSub 'DD MMM YYYY'}}</p>
+        <div id="likes-{{id}}"><b>{{this.likes}}</b></div>
+        <i class="fa fa-heart" style="font-size:24px;color:red"></i>
+
+        <button class="btn-secondary like-review" data-post-id="{{this.id}}" id="myButton" onclick="actOnPost(event)">
+          <i class="fa fa-heart" aria-hidden="true"></i> Like
+        </button>
+
+        <br>
+        <a href="/content/reportContent/{{id}}"><button class="btn btn-danger">Report</button></a>
+
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+  {{else}}
+  <h3>No content posted.</h3>
+  {{/if}}
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  // collapsible
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+
+  //filtering
+  function Filter() {
+    var input, filter, gallery, i, byname, txtValue, check;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    gallery = document.getElementsByClassName("gallery");
+    checkName = document.querySelector('input[name = "filter"][value = "Name"]:checked');
+    checkSName = document.querySelector('input[name = "filter"][value = "SName"]:checked');
+
+    if (checkName != null && txtValue != "") {
+      for (i = 0; i < gallery.length; i++) {
+        Names = gallery[i].getElementsByClassName("name")[0];
+        if (Names) {
+          txtValue = Names.textContent || Names.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            gallery[i].style.display = "";
+          } else {
+            gallery[i].style.display = "none";
+          }
+        }
+      }
+    }
+    else if (checkSName != null && txtValue != "") {
+      for (i = 0; i < gallery.length; i++) {
+        SNames = gallery[i].getElementsByClassName("sname")[0];
+        if (SNames) {
+          txtValue = SNames.textContent || SNames.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            gallery[i].style.display = "";
+          } else {
+            gallery[i].style.display = "none";
+          }
+        }
+      }
+    }
+  }
+
+  const clearIcon = document.querySelector(".clear-icon");
+  const searchBar = document.querySelector("#myInput");
+
+  searchBar.addEventListener("keyup", () => {
+    if (searchBar.value && clearIcon.style.visibility != "visible") {
+      clearIcon.style.visibility = "visible";
+    } else if (!searchBar.value) {
+      clearIcon.style.visibility = "hidden";
+    }
+  });
+
+  clearIcon.addEventListener("click", () => {
+    searchBar.value = "";
+    clearIcon.style.visibility = "hidden";
+  })
+
+  // back to top button
+  var mybutton = document.getElementById("top");
+
+  window.onscroll = function () { scrollFunction() };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  //like button
+  var updatePostStats = {
+    Like: function (postId) {
+      document.querySelector('#likes-' + postId).textContent++;
+    },
+    Unlike: function (postId) {
+      document.querySelector('#likes-' + postId).textContent--;
+    }
+  };
+
+  var toggleButtonText = {
+    Like: function (button) {
+      button.textContent = "Unlike";
+    },
+    Unlike: function (button) {
+      button.textContent = "Like";
+    }
+  };
+
+  var actOnPost = function (event) {
+    var postId = event.target.dataset.postId;
+    var action = event.target.textContent.trim();
+    toggleButtonText[action](event.target);
+    updatePostStats[action](postId);
+    axios.post('/content/posts/' + postId + '/act', { action: action }).then(function (response) {
+      console.log(response);
+    })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+</script>

@@ -1,0 +1,74 @@
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+<div class="container">
+{{#if products}}
+	<div class="card card-body">
+		<h3 class="text-primary">Products</h3>
+		{{#each products}}
+			<div class="card border-primary mb-2 w-100 mx-auto">
+				<div class="card-header">
+					<h5 class="card-title">{{this.name}}</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-2">
+							<a href="{{imageURL}}" data-title="{{product}}" data-toggle="lightbox">
+								<img src="{{imageURL}}" alt="Image unavailable" class="img-thumbnail img-fluid">
+							</a>
+                    	</div>
+						<div class="col">
+							<p class="font-italic">Product No.</p>
+							<p class="text-info">{{this.id}}</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Product ID</p>
+							<p class="text-info">{{this.productid}}</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Product Category</p>
+							<p class="text-info">{{this.category}}</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Manufacturer</p>
+							<p class="text-info">{{this.manufacturer}}</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Price</p>
+							<p class="text-info">{{this.price}}</p>
+						</div>
+						<div class="col">
+							<p class="font-italic"></p>
+							<a href="/product/update_product/{{this.id}}" class="card-link">
+								<i class="fas fa-pencil-alt"></i>
+								
+							</a>  
+							<a href="/product/delete/{{this.id}}" class="card-link" data-toggle="confirmation"
+							   data-title="Confirm delete?">
+								<i class="far fa-trash-alt"></i>
+								
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="accordion" id="desAccordion{{id}}">
+					<div class="card-header" id="headingOne{{id}}">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne{{id}}"
+							aria-expanded="false" aria-controls="collapseOne{{id}}">
+							Description<i class="fas fa-chevron-down"></i>
+						</button>
+
+					</div>
+
+					<div id="collapseOne{{id}}" class="collapse" aria-labelledby="headingOne{{id}}"
+						data-parent="#desAccordion{{id}}">
+						<div class="card-body">
+							{{this.description}}
+						</div>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</div>
+{{else}}
+	<h3>No Products Available</h3>
+{{/if}}

@@ -1,0 +1,104 @@
+
+<h1 class="display-4">Retrieve Feedback</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="container">
+{{#if forms}}
+ <hr style="border:3px solid #f1f1f1">
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>Rating</th>
+            <th>Feedback</th>
+            <th></th>
+ 
+        </tr>
+        <tr>
+		{{#each forms}}
+		
+       
+            <td>{{id}}</td>
+            <td>{{rating}}</td>
+            <td>{{fb}}</td>
+           
+            <td><a href="/form/delete/{{id}}" class="card-link" data-toggle="confirmation"
+							data-title="Confirm delete?">
+							<i class="far fa-trash-alt"></i>
+							Read & Delete
+						</a></td>
+        </tr>
+   
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+        h1{
+            text-align: center;
+            font-family: "Audiowide", sans-serif;
+            font-size: 60px;
+        }
+
+        table{
+            width: 100%;
+        }
+        
+
+        table, th, td{
+            color: rgb(0, 0, 0);
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td{
+            padding: 15px;
+            text-align: center;
+        }
+
+        th{
+            background-color: rgba(126, 102, 223, 0.435) ;
+        }
+
+        td{
+            background-color: rgba(223, 219, 240, 0.836) ;
+        }
+
+
+
+        .button1{
+            background-color: aquamarine;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 6px 4px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        .button2{
+            background-color:#A7C7E7;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 6px 4px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+        .button:hover{
+            background-color: white;
+        }
+    </style>
+		{{/each}}
+	 </table>
+
+</div>
+{{else}}
+	<h4>No feedback yet...</h4>
+{{/if}}

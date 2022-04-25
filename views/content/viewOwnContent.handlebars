@@ -1,0 +1,164 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+<style>
+  .title {
+    text-align: center;
+    font-family: "Audiowide", sans-serif;
+    font-size: 60px;
+  }
+
+  .title h2 {
+    font-size: 40px;
+    font-weight: 700;
+  }
+
+  .gallery {
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    margin: 10px;
+    position: relative;
+    text-align: center;
+  }
+
+  .id {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    background-color: #fff;
+    border: 1px solid;
+    height: 25px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 25px;
+  }
+
+  .gallery:hover {
+    border: 1px solid #777;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: auto;
+  }
+
+  .desc {
+    padding: 12px;
+    text-align: center;
+  }
+
+  .buttons {
+    text-align: center;
+  }
+
+  .collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .active,
+  .collapsible:hover {
+    background-color: #ccc;
+  }
+
+  .content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
+
+  .collapsible:after {
+    content: '\02795';
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .active:after {
+    content: "\2796";
+  }
+
+  .fa {
+    float: left;
+  }
+
+  #counterValue {
+    float: left;
+    margin-right: 3%;
+    margin-left: 35%;
+  }
+
+  .clearfix {
+    clear: both;
+  }
+</style>
+
+<body>
+  <div class="title">
+    <h2>Your Gallery</h2>
+  </div>
+  <hr style="border:1px solid black;">
+  {{#if contents}}
+  {{#each contents}}
+  <div class="gallery">
+    <a target="_blank" href="{{subURL}}">
+      <img src="{{subURL}}" alt="Content Unavailable" class="img-thumbnail img-fluid" width="600" height="400"
+        title="{{sname}}, {{likes}} likes">
+    </a>
+    <div class="id">{{id}}</div>
+    <button type="button" class="collapsible">Expand</button>
+    <div class="content">
+      <div class="desc">
+        <p>Submission Name:<br> <b>{{sname}}</b></p>
+        <p>Name:<br> <b>{{fname}} {{lname}}</b></p>
+        <p>Phone: <b>{{phone}}</b></p>
+        <p>Age: <b>{{age}}</b></p>
+        <p>Gender: <b>{{gender}}</b></p>
+        <p>Uploaded on:<br> <b>{{formatDate dateOfSub 'DD MMM YYYY'}}</b></p>
+        <div id="counterValue"><b>{{likes}}</b></div>
+        <i class="fa fa-heart" style="font-size:24px;color:red"></i>
+        <div class="clearfix"></div>
+      </div>
+      <div class="buttons">
+        <a href="/content/updateContent/{{id}}"><button class="btn btn-warning">Update</button></a>
+        <br>
+        <a href="/content/deleteContent/{{id}}" data-toggle="confirmation" data-title="Confirm delete?">
+          <br>
+          <button class="btn btn-danger">Delete</button>
+        </a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{else}}
+  <h3>No content posted.</h3>
+  {{/if}}
+</body>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>

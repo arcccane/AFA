@@ -1,0 +1,16 @@
+<div class="form-sm">
+<h1 class="display-4">Add to cart</h1>
+<p>Add {{cart_name}} to cart?</p>
+
+<form method="POST" action="">
+    {{!-- <input type="hidden" id="cart_user_id" name="cart_user_id" value="{{cart_user_id}}"> --}}
+    <input type="hidden" id="cart_productid" name="cart_productid" value="{{cart_productid}}">
+    <input type="hidden" id="cart_name" name="cart_name" value="{{cart_name}}">
+    <input type="hidden" id="cart_price" name="cart_price" value="{{cart_price}}">
+    <input type="hidden" id="cart_item_quantity" name="cart_item_quantity" value="{{cart_item_quantity}}">
+    <input type="hidden" id="isNull" name="isNull" value="{{isNull}}">
+    <a href="/product/showProduct" class="btn btn-danger">Back</a>
+    {{!-- <a href="/cart" class="btn btn-danger">Add</a> --}}
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+</div> 

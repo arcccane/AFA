@@ -1,0 +1,102 @@
+<div class="container-fluid">
+
+
+
+  <h1 class="display-4">Retrieve Users</h1>
+
+
+  <div>
+    <p>There is {{totaladmin}} admin.</p>
+  </div>
+
+
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each adminzz}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.firstname}}</td>
+          <td>{{this.lastname}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.username}}</td>
+          <td>********</td>
+          <td>
+
+          </td>
+          <td><a href="/updates/adminupdateadmins/{{this.id}}" class="btn btn-warning">Update</a></td>
+          <td>
+            <form action="/admin/admindeleteAdmin/{{this.id}}">
+              <a href="/admin/admindeleteAdmin/{{this.id}}" class="card-link" data-toggle="confirmation"
+                data-title="Confirm delete?">
+                <i class="far fa-trash-alt"></i>
+                Delete
+              </a>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div>
+    <p>There is {{totaluser}} user.</p>
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each userzz}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.firstname}}</td>
+          <td>{{this.lastname}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.username}}</td>
+          <td>********</td>
+          <td>
+          </td>
+          <td><a href="/updates/adminupdateuser/{{this.id}}" class="btn btn-warning">Update</a></td>
+          <td>
+            <form action="/admin/admindeleteuser/{{this.id}}">
+              <a href="/admin/admindeleteuser/{{this.id}}" class="card-link" data-toggle="confirmation"
+                data-title="Confirm delete?">
+                <i class="far fa-trash-alt"></i>
+                Delete
+              </a>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+</div>

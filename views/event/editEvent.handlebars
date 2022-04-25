@@ -1,0 +1,121 @@
+{{!-- <!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+<div class="container">
+	<div class="card card-body">
+		<h3>Edit Event Details</h3>
+		<form action="/event/saveEditedEvent/{{event.id}}" method="post">
+
+			<div class="row mb-2">
+				<div class="col-lg-9">
+					<div class="form-group">
+						<label class="font-italic" for="event">Event</label>
+						<input id="event" type="text" class="form-control" name="event" onblur="initialiseTitle()"
+							   value="{{event.event}}" required>
+						
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="des">Description</label>
+						<textarea class="form-control" id="des" name="des" rows="6">{{event.des}}</textarea>
+					</div>
+				
+				</div>
+				
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+						<label class="font-italic">Date</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly value="{{formatDate event.dateRelease 'DD/MM/YYYY'}}" />
+					</div>
+					<div class="form-group">
+								<label for="starttime">Start</label>
+								<input type="text" name="starttime" class="form-control" id="starttime" value="{{event.starttime}}" />
+				
+							<label for="endtime">End</label>
+							<input type="text" name="endtime" class="form-control" id="endtime" value="{{event.endtime}}" />
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<button type="submit" class="btn btn-primary">Confirm & Save</button>
+		</form>
+	</div>
+</div> --}}
+
+
+
+
+
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+<div class="container">
+	<div class="card card-body">
+		<h3>Edit Event</h3>
+		<form action="/event/saveEditedEvent/{{event.id}}?_method=PUT" method="post">
+			<input type="hidden" name="_method" value="PUT">
+
+			<div class="row mb-2">
+				<div class="col-lg-9">
+					<div class="form-group">
+						<label class="font-italic" for="event">Title</label>
+						<input id="event" type="text" class="form-control" name="event" onblur="initialiseTitle()"
+							   value="{{event.event}}" required>
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="des">Description</label>
+						<textarea class="form-control" id="des" name="des" rows="6">{{event.des}}</textarea>
+					</div>
+				</div>
+				<div class="col-lg-3 mb-4">
+					<input type="file" id="posterUpload" name="posterUpload" accept="image/png,
+															image/jpeg,image/jpg,image/gif">
+					<a href="{{event.posterURL}}" data-title="{{event.title}}" data-toggle="lightbox">
+						<img id="poster" {{#if event.posterURL}} src="{{event.posterURL}}" {{else}} src="/img/no-image.jpg"  {{/if}} alt=""
+							 name="posterURL" class="border img-thumbnail img-fluid" style="height:95%;width:100%">
+					</a>
+					<input id="posterURL" type="hidden" name="posterURL" value="{{event.posterURL}}">
+					<div class="font-weight-bold text-danger small" id="posterErr" style="display:none"></div>
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+						<label class="font-italic">Date of release</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly value="{{formatDate event.dateRelease
+																								  'DD/MM/YYYY'}}" />
+					</div>
+					<div class="form-group">
+								<label for="starttime">Start</label>
+								<input type="text" name="starttime" class="form-control" id="starttime" value="{{event.startTime}}" />
+				
+							<label for="endtime">End</label>
+							<input type="text" name="endtime" class="form-control" id="endtime" value="{{event.endTime}}" />
+					</div>	
+				</div>
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">Confirm & Save</button>
+		</form>
+	</div>
+</div>
+
+
+<script>
+		$('#datepicker').datepicker({
+			format: 'dd/mm/yyyy', 
+			uiLibrary: 'bootstrap4',
+		});
+		$(function () {
+             $('#starttime').timepicker({
+                 format: 'HH:MM'
+             });
+			 $('#endtime').timepicker({
+				format: 'HH:MM'
+			});
+		});
+		
+		
+</script>

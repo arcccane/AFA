@@ -1,0 +1,105 @@
+<div class="row">
+	<div class="col-md-6 mx-auto">
+		<div class="card card-body">
+			<h3 class="text-center">Feedback</h3>
+			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+			<form method="post" action="form/addfeedback"> 
+				<div class="star">
+						<label class="font-italic">Rating</label>
+						<br>
+						<div class="rating">
+							<input class="form-check-input" type="radio" id="VS" value="VerySatisfied" name="rating">
+							<label class="form-check-label" for="VS"></label>
+	
+							<input class="form-check-input" type="radio" id="S" value="Satisfied" name="rating">
+							<label class="form-check-label" for="S"></label>
+		
+							<input class="form-check-input" type="radio" id="N" value="Neutral" name="rating">
+							<label class="form-check-label" for="N"></label>
+					
+							<input class="form-check-input" type="radio" id="U" value="Unsatisfied" name="rating">
+							<label class="form-check-label" for="U"></label>
+					
+							<input class="form-check-input" type="radio" id="VU" value="VeryUnsatisfied" name="rating">
+							<label class="form-check-label" for="VU"></label>
+						</div>
+
+						<div class="form-group">
+				<label class="font-italic" for="fb">Feedback, if any</label>
+				<textarea class="form-control" id="fb" name="fb" rows="3"></textarea>
+			</div>
+
+		
+			<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+	
+				</div>
+				
+				
+			</form>
+		</div>
+	</div>
+</div>
+
+<style>
+
+.col-md-6{
+
+}
+
+.rating {
+  position: relative;
+  display: inline-block;
+  border: none;
+  font-size: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rating input {
+  border: 0;
+  width: 3px;
+  height: 3px;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
+}
+
+.rating label {
+  position: relative;
+  float: right;
+  color: black;
+}
+
+.rating label:before {
+  margin: 2px;
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.rating input:checked ~ label:before {
+  color: #FFC107;
+}
+
+.rating label:hover ~ label:before {
+  color: #ffdb70;
+}
+
+.rating label:hover:before {
+  color: #FFC107;
+}
+
+.form-group{
+font-size: 18px;
+}
+
+
+</style>

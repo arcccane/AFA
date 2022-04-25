@@ -1,0 +1,54 @@
+<div class="container">
+{{!-- {{#if payment}} --}}
+	<div class="card card-body">
+		<h3 class="text-primary">Payment Information</h3>
+		{{!-- {{#each payment}} --}}
+			<div class="card border-primary mb-2 w-100 mx-auto">
+				{{!-- <div class="card-header">
+					<h5 class="card-title">{{this.payment}}</h5>
+				</div> --}}
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<p class="font-italic">Payment No.</p>
+							<p class="text-info">{{payment.id}}1</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Card Name</p>
+							<p class="text-info">{{payment.cardname}}Gan Chen Xi</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Card Number</p>
+							<p class="text-info">{{this.number}}2222 2222 2222 2222</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">Expiry Date</p>
+							<p class="text-info">{{this.expiry}}18/8/2021</p>
+						</div>
+						<div class="col">
+							<p class="font-italic">CVC</p>
+							<p class="text-info">{{this.cvc}}222</p>
+						</div>
+						<div class="col">
+							<p class="font-italic"></p>
+							<a href="/payment/update_payment/{{this.cardname}}" class="card-link">
+								<i class="fas fa-pencil-alt"></i>
+								Edit
+							</a>  
+							<a href="/payment/delete/{{this.cardname}}" class="card-link" data-toggle="confirmation"
+							   data-title="Confirm delete?">
+								<i class="far fa-trash-alt"></i>
+								Delete
+							</a>
+						</div>
+						<a href="/cart/checkout" class="btn btn-danger">Finish</a>
+					</div>
+				</div>
+			</div>
+		{{!-- {{/each}} --}}
+	</div>
+
+</div>
+{{!-- {{else}}
+	<h3>No Payment Information Added</h3> --}}
+{{!-- {{/if}} --}}

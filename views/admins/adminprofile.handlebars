@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+
+
+
+
+    <h1>Admin Account Details</h1>
+
+
+    <!--
+<!--<h1 class="display-4">Retrieve Users</h1>-->
+    <!--<div>-->
+    <!--    -->
+    <!--    <p>There is 1 user.</p>-->
+    <!--    -->
+    <!--</div>-->
+
+    <table id="tableData" class="table table-fixed">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+        {{#if user}}
+        <hr>
+        <div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{user.firstname}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{user.lastname}}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <td><a href="/updates/updateadmins" class="btn btn-warning">Update</a></td>
+                        <td>
+                            <form action="/admin/admindelete/{{user.id}}">
+                                <a href="/admin/admindelete/{{user.id}}" class="card-link" data-toggle="confirmation"
+                                    data-title="Confirm delete?">
+                                    <i class="far fa-trash-alt"></i>
+                                    Delete
+                                </a>
+                            </form>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {{/if}}
+
+
+
+</div>
